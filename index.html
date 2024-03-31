@@ -8,38 +8,58 @@
     <script src='script.js'></script>
 </head>
 <body>
+  
   <div id="header">
     <h1>Calculate!</h1>
   </div>
+  
+  <div id="screen"></div>
+  
   <div id="calculator">
-    <div id="screen"></div>
+    
     <div id="topRow" class="buttons">
         <button id="reset">AC</button>
         <button id="clear">C</button>
         <button id="changeSign">- / +</button>
         <button id="dot">.</button>
     </div>
-    <div id="numbers" class="buttons">
-        <button id="9">9</button>
-        <button id="8">8</button>
-        <button id="7">7</button>
-        <button id="6">6</button>
-        <button id="5">5</button>
-        <button id="4">4</button>
-        <button id="3">3</button>
-        <button id="2">2</button>
-        <button id="1">1</button>
-        <div id="zero">    
+    
+    <div id="container">
+        <div id="numbers" class="buttons">
+            <div id="numTop">
+                <button id="9">9</button>
+                <button id="8">8</button>
+                <button id="7">7</button>
+            </div>
+            <div id="numMid">
+                <button id="6">6</button>
+                <button id="5">5</button>
+                <button id="4">4</button>
+            </div>
+            <div id="numBotm">
+                <button id="3">3</button>
+                <button id="2">2</button>
+                <button id="1">1</button>
+            </div>
+                
             <button id="0">0</button>
+            
+        </div>
+        <div id="operators" class="buttons">
+            <div id="opTop">
+                <button id="divide">/</button>
+                <button id="multiply">x</button>
+            </div>
+            <div id="opMid">
+                <button id="plus">+</button>
+                <button id="minus">-</button>
+            </div>
+            
+            <button id="equals">=</button>
         </div>
     </div>
-    <div id="operators" class="buttons">
-        <button id="divide">/</button>
-        <button id="multiply">x</button>
-        <button id="plus">+</button>
-        <button id="minus">-</button>
-        <button id="equals">=</button>
-    </div>
+
   </div>
+
 </body>
 </html>
