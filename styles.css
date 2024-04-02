@@ -5,14 +5,20 @@ body {
     gap: 20px;
 }
 
+#border {
+    border: 10px solid red;
+    padding: 10px;
+}
+
 #header {
     margin-bottom: -20px;
 }
 
 #screen {
-    border: 10px solid black;
+    outline: 5px solid black;
     width: 150px;
     height: 50px;
+    margin-bottom: 10px;
 }
 
 #calculator {
@@ -53,7 +59,7 @@ body {
     flex-direction: row-reverse;
 }
 
-#0 {
+#zero {
     flex: 1;
 }
 
