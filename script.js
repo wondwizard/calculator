@@ -1,8 +1,10 @@
 const screen = document.getElementById('screen');
+const clear = document.getElementById('clear');
+
 let number;
 
 function placeNum(num) {
-    screen.textContent = num;
+    screen.textContent += num;
 }
 
 function add(num1, num2) {
@@ -67,3 +69,6 @@ let obj = {
     },
 }
 
+clear.addEventListener('click', () => {
+    screen.textContent = '';
+});
