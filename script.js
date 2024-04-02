@@ -1,14 +1,31 @@
 const screen = document.getElementById('screen');
 const clear = document.getElementById('clear');
+const equal = document.getElementById('equals');
 
 let number;
+let currentNumber;
+let total = 0;
+let operator;
+let done = false;
+
+function checkIfDone() {
+    if (done === true) {
+        clearScreen();
+        done = false;
+    }
+
+}
 
 function placeNum(num) {
     screen.textContent += num;
 }
 
+function clearScreen() {
+    screen.textContent = '';
+}
+
 function add(num1, num2) {
-    console.log(num1 + num2);
+    return num1 + num2;
 }
 
 function subtract(num1, num2) {
@@ -38,37 +55,95 @@ function divide(num1, num2) {
 
 let obj = {
     zero: function() {
-        number = 0;
+        checkIfDone();
+        number = '0';
     },
     one: function() {
-        number = 1;
+        checkIfDone();
+        number = '1';
     },
     two: function() {
-        number = 2;
+        checkIfDone();
+        number = '2';
     },
     three: function() {
-        number = 3;
+        checkIfDone();
+        number = '3';
     },
     four: function() {
-        number = 4;
+        checkIfDone();
+        number = '4';
     },
     five: function() {
-        number = 5;
+        checkIfDone();
+        number = '5';
     },
     six: function() {
-        number = 6;
+        checkIfDone();
+        number = '6';
     },
     seven: function() {
-        number = 7;
+        checkIfDone();
+        number = '7';
     },
     eight: function() {
-        number = 8;
+        checkIfDone();
+        number = '8';
     },
     nine: function() {
-        number = 9;
+        checkIfDone();
+        number = '9';
     },
 }
 
 clear.addEventListener('click', () => {
-    screen.textContent = '';
+    clearScreen();
 });
+
+[...document.getElementsByClassName("operator")].forEach(function(item) {
+    // adding eventListener to the elements
+    item.addEventListener('click', function() {
+      // calling the methods
+      // this.id will be the id of the clicked button
+      // there is a method in the object by same name, which will be trigger
+      
+        operatorObj[this.id]();      
+    })
+});
+
+let operatorObj = {
+    plus: function() {
+        operator = '+';
+        currentNumber = document.getElementById('screen').textContent;
+        total += +currentNumber;
+        console.log(total);
+        clearScreen();
+    },
+    minus: function() {
+        operator = '-';
+        currentNumber = number;
+        clearScreen();
+    },
+    divide: function() {
+        operator = '/';
+        currentNumber = number;
+        clearScreen();
+    },
+    multiply: function() {
+        operator = '*';
+        currentNumber = number;
+        clearScreen();
+    },
+}
+
+equal.addEventListener('click', () => {
+    let lastNumber = document.getElementById('screen').textContent;
+    
+    if (operator === '+') {
+        potato = add(total, +lastNumber);
+        console.log(potato);
+        screen.textContent = potato
+        total = 0;
+        done = true;
+    }
+})
