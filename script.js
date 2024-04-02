@@ -65,20 +65,5 @@ let obj = {
     nine: function() {
         number = 9;
     },
-    divide: function() {
-        number = '/';
-    },
-    multiply: function() {
-        number = '*';
-    },
-    plus: function() {
-        number = '+';
-    },
-    minus: function() {
-        number = '-';
-    },
-    equals: function() {
-        number = '=';
-    },
 }
 
