@@ -37,7 +37,7 @@ function multiply(num1, num2) {
 }
 
 function divide(num1, num2) {
-    console.log(num1 / num2);
+    return num1 / num2;
 }
 
 [...document.getElementsByClassName("num")].forEach(function(item) {
@@ -48,7 +48,9 @@ function divide(num1, num2) {
       // there is a method in the object by same name, which will be trigger
       
         obj[this.id]();
-        placeNum(number);
+        if (screen.textContent.length < 17) {
+            placeNum(number);
+        }
       
     })
 });
@@ -132,7 +134,13 @@ let operatorObj = {
     },
     divide: function() {
         operator = '/';
-        currentNumber = number;
+        currentNumber = document.getElementById('screen').textContent;
+        if (total === 0) {
+            total = +currentNumber;
+        } else {
+            total /= +currentNumber;
+        }
+        console.log(total);
         clearScreen();
     },
     multiply: function() {
@@ -156,5 +164,16 @@ equal.addEventListener('click', () => {
         screen.textContent = potato;
         total = 0;
         done = true;
+    } else if (operator === '/') {
+        if (+lastNumber === 0) {
+            screen.textContent = 'undefined';
+            total = 0;
+            done = true;
+        } else {
+            potato = divide(total, +lastNumber);
+            screen.textContent = potato;
+            total = 0;
+            done = true;
+        }
     }
 })
