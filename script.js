@@ -29,7 +29,7 @@ function add(num1, num2) {
 }
 
 function subtract(num1, num2) {
-    console.log(num1 - num2);
+    return num1 - num2;
 }
 
 function multiply(num1, num2) {
@@ -121,7 +121,13 @@ let operatorObj = {
     },
     minus: function() {
         operator = '-';
-        currentNumber = number;
+        currentNumber = document.getElementById('screen').textContent;
+        if (total === 0) {
+            total = +currentNumber;
+        } else {
+            total -= +currentNumber;
+        }
+        console.log(total);
         clearScreen();
     },
     divide: function() {
@@ -142,7 +148,12 @@ equal.addEventListener('click', () => {
     if (operator === '+') {
         potato = add(total, +lastNumber);
         console.log(potato);
-        screen.textContent = potato
+        screen.textContent = potato;
+        total = 0;
+        done = true;
+    } else if (operator === '-') {
+        potato = subtract(total, +lastNumber);
+        screen.textContent = potato;
         total = 0;
         done = true;
     }
