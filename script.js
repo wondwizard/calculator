@@ -3,6 +3,7 @@ const clear = document.getElementById('clear');
 const equal = document.getElementById('equals');
 const reset = document.getElementById('reset');
 const changeSign = document.getElementById('changeSign');
+const equation = document.getElementById('equation');
 
 let number;
 let currentNumber;
@@ -144,13 +145,16 @@ function checkIfDone() {
         if (screen.textContent.length < 17) {
             placeNum(number);
         }
+        
     })
 });
 
 [...document.getElementsByClassName("operator")].forEach(function(item) {
     item.addEventListener('click', function() {
-        operatorObj[this.id]();      
+        operatorObj[this.id]();
+        equation.textContent = '= ' + total + ' ' + operator;    
     })
+    
 });
 
 equal.addEventListener('click', () => {
@@ -179,6 +183,8 @@ equal.addEventListener('click', () => {
         total = 0;
         done = true;
     }
+
+    equation.textContent = '';
 })
 
 clear.addEventListener('click', () => {
@@ -192,6 +198,7 @@ reset.addEventListener('click', () => {
     operator = '';
     sign = 'positive';
     done = false;
+    equation.textContent = '';
 });
 
 changeSign.addEventListener('click', () => {

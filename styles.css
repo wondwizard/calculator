@@ -14,11 +14,23 @@ body {
     margin-bottom: -20px;
 }
 
-#screen {
+#mainScreen {
+    display: flex;
+    flex-direction: column;
     outline: 5px solid black;
     width: 150px;
     height: 50px;
     margin-bottom: 10px;
+}
+
+#equation {
+    width: 150px;
+    height: 15px;
+}
+
+#screen {
+    width: 15opx;
+    height: 35px;
 }
 
 #calculator {
