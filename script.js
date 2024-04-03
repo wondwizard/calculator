@@ -1,6 +1,7 @@
 const screen = document.getElementById('screen');
 const clear = document.getElementById('clear');
 const equal = document.getElementById('equals');
+const reset = document.getElementById('reset');
 
 let number;
 let currentNumber;
@@ -172,4 +173,10 @@ equal.addEventListener('click', () => {
 
 clear.addEventListener('click', () => {
     clearScreen();
+});
+
+reset.addEventListener('click', () => {
+    clearScreen();
+    total = 0;
+    operator = '';
 });
