@@ -50,6 +50,10 @@ let numObj = {
         checkIfDone();
         number = '9';
     },
+    dot: function() {
+        checkIfDone();
+        number = '.';
+    },
 }
 
 let operatorObj = {
