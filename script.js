@@ -8,54 +8,7 @@ let total = 0;
 let operator;
 let done = false;
 
-function checkIfDone() {
-    if (done === true) {
-        clearScreen();
-        done = false;
-    }
-
-}
-
-function placeNum(num) {
-    screen.textContent += num;
-}
-
-function clearScreen() {
-    screen.textContent = '';
-}
-
-function add(num1, num2) {
-    return num1 + num2;
-}
-
-function subtract(num1, num2) {
-    return num1 - num2;
-}
-
-function multiply(num1, num2) {
-    return num1 * num2;
-}
-
-function divide(num1, num2) {
-    return num1 / num2;
-}
-
-[...document.getElementsByClassName("num")].forEach(function(item) {
-    // adding eventListener to the elements
-    item.addEventListener('click', function() {
-      // calling the methods
-      // this.id will be the id of the clicked button
-      // there is a method in the object by same name, which will be trigger
-      
-        obj[this.id]();
-        if (screen.textContent.length < 17) {
-            placeNum(number);
-        }
-      
-    })
-});
-
-let obj = {
+let numObj = {
     zero: function() {
         checkIfDone();
         number = '0';
@@ -98,27 +51,11 @@ let obj = {
     },
 }
 
-clear.addEventListener('click', () => {
-    clearScreen();
-});
-
-[...document.getElementsByClassName("operator")].forEach(function(item) {
-    // adding eventListener to the elements
-    item.addEventListener('click', function() {
-      // calling the methods
-      // this.id will be the id of the clicked button
-      // there is a method in the object by same name, which will be trigger
-      
-        operatorObj[this.id]();      
-    })
-});
-
 let operatorObj = {
     plus: function() {
         operator = '+';
         currentNumber = document.getElementById('screen').textContent;
         total += +currentNumber;
-        console.log(total);
         clearScreen();
     },
     minus: function() {
@@ -129,7 +66,6 @@ let operatorObj = {
         } else {
             total -= +currentNumber;
         }
-        console.log(total);
         clearScreen();
     },
     divide: function() {
@@ -140,7 +76,6 @@ let operatorObj = {
         } else {
             total /= +currentNumber;
         }
-        console.log(total);
         clearScreen();
     },
     multiply: function() {
@@ -151,18 +86,67 @@ let operatorObj = {
         } else {
             total *= +currentNumber;
         }
-        console.log(total);
         clearScreen();
     },
 }
+
+
+//calculations functions
+function add(num1, num2) {
+    return num1 + num2;
+}
+
+function subtract(num1, num2) {
+    return num1 - num2;
+}
+
+function multiply(num1, num2) {
+    return num1 * num2;
+}
+
+function divide(num1, num2) {
+    return num1 / num2;
+}
+
+//screen functions
+function placeNum(num) {
+    screen.textContent += num;
+}
+
+function clearScreen() {
+    screen.textContent = '';
+}
+
+//lets you continue calculations after pressing equals
+function checkIfDone() {
+    if (done === true) {
+        clearScreen();
+        done = false;
+    }
+}
+
+
+//event listeners
+[...document.getElementsByClassName("num")].forEach(function(item) {
+    item.addEventListener('click', function() {
+        numObj[this.id]();
+        if (screen.textContent.length < 17) {
+            placeNum(number);
+        }
+    })
+});
+
+[...document.getElementsByClassName("operator")].forEach(function(item) {
+    item.addEventListener('click', function() {
+        operatorObj[this.id]();      
+    })
+});
 
 equal.addEventListener('click', () => {
     let lastNumber = document.getElementById('screen').textContent;
     
     if (operator === '+') {
-        potato = add(total, +lastNumber);
-        console.log(potato);
-        screen.textContent = potato;
+        screen.textContent = add(total, +lastNumber);
         total = 0;
         done = true;
     } else if (operator === '-') {
@@ -175,8 +159,7 @@ equal.addEventListener('click', () => {
             total = 0;
             done = true;
         } else {
-            potato = divide(total, +lastNumber);
-            screen.textContent = potato;
+            screen.textContent = divide(total, +lastNumber);
             total = 0;
             done = true;
         }
@@ -186,3 +169,7 @@ equal.addEventListener('click', () => {
         done = true;
     }
 })
+
+clear.addEventListener('click', () => {
+    clearScreen();
+});
