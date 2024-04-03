@@ -2,12 +2,14 @@ const screen = document.getElementById('screen');
 const clear = document.getElementById('clear');
 const equal = document.getElementById('equals');
 const reset = document.getElementById('reset');
+const changeSign = document.getElementById('changeSign');
 
 let number;
 let currentNumber;
 let total = 0;
 let operator;
 let done = false;
+let sign = 'positive';
 
 let numObj = {
     zero: function() {
@@ -61,6 +63,7 @@ let operatorObj = {
         operator = '+';
         currentNumber = document.getElementById('screen').textContent;
         total += +currentNumber;
+        sign = 'positive';
         clearScreen();
     },
     minus: function() {
@@ -71,6 +74,7 @@ let operatorObj = {
         } else {
             total -= +currentNumber;
         }
+        sign = 'positive';
         clearScreen();
     },
     divide: function() {
@@ -81,6 +85,7 @@ let operatorObj = {
         } else {
             total /= +currentNumber;
         }
+        sign = 'positive';
         clearScreen();
     },
     multiply: function() {
@@ -91,6 +96,7 @@ let operatorObj = {
         } else {
             total *= +currentNumber;
         }
+        sign = 'positive';
         clearScreen();
     },
 }
@@ -177,10 +183,23 @@ equal.addEventListener('click', () => {
 
 clear.addEventListener('click', () => {
     clearScreen();
+    sign = 'positive';
 });
 
 reset.addEventListener('click', () => {
     clearScreen();
     total = 0;
     operator = '';
+    sign = 'positive';
+    done = false;
+});
+
+changeSign.addEventListener('click', () => {
+    if (sign === 'positive') {
+        screen.textContent = screen.textContent.replace(/^/, '-');
+        sign = 'negative';
+    } else {
+        screen.textContent = screen.textContent.replace('-', '');
+        sign = 'positive';
+    }
 });
