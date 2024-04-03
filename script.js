@@ -33,7 +33,7 @@ function subtract(num1, num2) {
 }
 
 function multiply(num1, num2) {
-    console.log(num1 * num2);
+    return num1 * num2;
 }
 
 function divide(num1, num2) {
@@ -145,7 +145,13 @@ let operatorObj = {
     },
     multiply: function() {
         operator = '*';
-        currentNumber = number;
+        currentNumber = document.getElementById('screen').textContent;
+        if (total === 0) {
+            total = +currentNumber;
+        } else {
+            total *= +currentNumber;
+        }
+        console.log(total);
         clearScreen();
     },
 }
@@ -160,8 +166,7 @@ equal.addEventListener('click', () => {
         total = 0;
         done = true;
     } else if (operator === '-') {
-        potato = subtract(total, +lastNumber);
-        screen.textContent = potato;
+        screen.textContent = subtract(total, +lastNumber);
         total = 0;
         done = true;
     } else if (operator === '/') {
@@ -175,5 +180,9 @@ equal.addEventListener('click', () => {
             total = 0;
             done = true;
         }
+    } else if (operator === '*') {
+        screen.textContent = multiply(total, +lastNumber);
+        total = 0;
+        done = true;
     }
 })
