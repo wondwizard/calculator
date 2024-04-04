@@ -97,3 +97,26 @@ body {
 #equals {
     flex: 1;
 }
+
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+    list-style: none;
+}
+
+li {
+    font-size: 20px;
+}
+
+#footer {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+#footerBelow {
+    font-size: 20px;
+    font-weight: 700;
+    color: red;
+}

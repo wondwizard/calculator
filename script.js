@@ -222,6 +222,7 @@ equal.addEventListener('click', () => {
     }
 
     equation.textContent = '';
+    operator = '';
 })
 
 clear.addEventListener('click', () => {
@@ -382,6 +383,7 @@ document.addEventListener('keydown', (event) => {
             done = true;
         }
 
+        operator = '';
         equation.textContent = '';
     }
 })
