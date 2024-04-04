@@ -55,7 +55,11 @@ let numObj = {
     },
     dot: function() {
         checkIfDone();
-        number = '.';
+        if (screen.textContent.includes('.')) {
+            number = '';
+        } else {
+            number = '.';
+        }
     },
 }
 
