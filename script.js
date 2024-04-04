@@ -125,20 +125,20 @@ let operatorObj = {
 
 //calculations functions
 function add(num1, num2) {
-    return (num1 + num2).toFixed(8);
+    return parseFloat((num1 + num2).toFixed(3));
     
 }
 
 function subtract(num1, num2) {
-    return (num1 - num2).toFixed(8);
+    return parseFloat((num1 - num2).toFixed(3));
 }
 
 function multiply(num1, num2) {
-    return (num1 * num2).toFixed(8);
+    return parseFloat((num1 * num2).toFixed(3));
 }
 
 function divide(num1, num2) {
-    return (num1 / num2).toFixed(8);
+    return parseFloat((num1 / num2).toFixed(3));
 }
 
 //screen functions
@@ -175,7 +175,7 @@ function operate() {
 [...document.getElementsByClassName("num")].forEach(function(item) {
     item.addEventListener('click', function() {
         numObj[this.id]();
-        if (screen.textContent.length < 11) {
+        if (screen.textContent.length < 8) {
             placeNum(number);
         }
         
