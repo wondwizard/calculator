@@ -149,6 +149,9 @@ function placeNum(num) {
 
 function clearScreen() {
     screen.textContent = '';
+    if (sign = 'negative') {
+        sign = 'positive'
+    }
 }
 
 //lets you continue calculations after pressing equals
@@ -223,14 +226,12 @@ equal.addEventListener('click', () => {
 
 clear.addEventListener('click', () => {
     clearScreen();
-    sign = 'positive';
 });
 
 reset.addEventListener('click', () => {
     clearScreen();
     total = 0;
     operator = '';
-    sign = 'positive';
     done = false;
     equation.textContent = '';
 });
@@ -248,3 +249,139 @@ changeSign.addEventListener('click', () => {
 back.addEventListener('click', () => {
     screen.textContent = screen.textContent.replace(/.$/, '');    
 });
+
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === '0') { checkIfDone(); number = '0'; placeNum(number); }
+    if (event.key === '1') { checkIfDone(); number = '1'; placeNum(number); }
+    if (event.key === '2') { checkIfDone(); number = '2'; placeNum(number); }
+    if (event.key === '3') { checkIfDone(); number = '3'; placeNum(number); }
+    if (event.key === '4') { checkIfDone(); number = '4'; placeNum(number); }
+    if (event.key === '5') { checkIfDone(); number = '5'; placeNum(number); }
+    if (event.key === '6') { checkIfDone(); number = '6'; placeNum(number); }
+    if (event.key === '7') { checkIfDone(); number = '7'; placeNum(number); }
+    if (event.key === '8') { checkIfDone(); number = '8'; placeNum(number); }
+    if (event.key === '9') { checkIfDone(); number = '9'; placeNum(number); }
+    if (event.key === 'Backspace') {
+        screen.textContent = screen.textContent.replace(/.$/, '');
+    }
+    if (event.key === 'c') {
+        clearScreen();
+        sign = 'positive';
+    }
+    if (event.key === '.') {
+        checkIfDone();
+        if (screen.textContent.includes('.')) {
+            number = '';
+        } else {
+            number = '.';
+        }
+        placeNum(number);
+    }
+    if (event.key === 'a') {
+        clearScreen();
+        total = 0;
+        operator = '';
+        sign = 'positive';
+        done = false;
+        equation.textContent = '';
+    }
+    if (event.key === 'Control') {
+        if (sign === 'positive') {
+            screen.textContent = screen.textContent.replace(/^/, '-');
+            sign = 'negative';
+        } else {
+            screen.textContent = screen.textContent.replace('-', '');
+            sign = 'positive';
+        }
+    }
+    if (event.key === '=') {
+        if (operator === '-' || operator === '*' || operator === '/') {
+            operate();
+        } else {
+            currentNumber = document.getElementById('screen').textContent;
+            total += +currentNumber;
+        }
+        operator = '+';
+        sign = 'positive';
+        clearScreen();
+        equation.textContent = '= ' + total + ' ' + operator;
+    }
+    if (event.key === '-') {
+        if (operator === '+' || operator === '*' || operator === '/') {
+            operate();
+        } else {
+            currentNumber = document.getElementById('screen').textContent;
+            if (total === 0) {
+                total = +currentNumber;
+            } else {
+                total -= +currentNumber;
+            }
+        }
+        operator = '-';
+        sign = 'positive';
+        clearScreen();
+        equation.textContent = '= ' + total + ' ' + operator;
+    }
+    if (event.key === 'x') {
+        if (operator === '-' || operator === '+' || operator === '/') {
+            operate();
+        } else {
+            currentNumber = document.getElementById('screen').textContent;
+            if (total === 0) {
+                total = +currentNumber;
+            } else {
+                total *= +currentNumber;
+            }
+        }
+        operator = '*';
+        sign = 'positive';
+        clearScreen();
+        equation.textContent = '= ' + total + ' ' + operator;
+    }
+    if (event.key === '/') {
+        if (operator === '-' || operator === '*' || operator === '+') {
+            operate();
+        } else {
+            currentNumber = document.getElementById('screen').textContent;
+            if (total === 0) {
+                total = +currentNumber;
+            } else {
+                total /= +currentNumber;
+            }
+        }
+        operator = '/';
+        sign = 'positive';
+        clearScreen();
+        equation.textContent = '= ' + total + ' ' + operator;
+    }
+    if (event.key === 'Enter') {
+        let lastNumber = document.getElementById('screen').textContent;
+    
+        if (operator === '+') {
+            screen.textContent = add(total, +lastNumber);
+            total = 0;
+            done = true;
+        } else if (operator === '-') {
+            screen.textContent = subtract(total, +lastNumber);
+            total = 0;
+            done = true;
+        } else if (operator === '/') {
+            if (+lastNumber === 0) {
+                screen.textContent = 'undefined';
+                total = 0;
+                done = true;
+            } else {
+                screen.textContent = divide(total, +lastNumber);
+                total = 0;
+                done = true;
+            }
+        } else if (operator === '*') {
+            screen.textContent = multiply(total, +lastNumber);
+            total = 0;
+            done = true;
+        }
+
+        equation.textContent = '';
+    }
+})
