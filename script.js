@@ -253,16 +253,27 @@ back.addEventListener('click', () => {
 
 
 document.addEventListener('keydown', (event) => {
-    if (event.key === '0') { checkIfDone(); number = '0'; placeNum(number); }
-    if (event.key === '1') { checkIfDone(); number = '1'; placeNum(number); }
-    if (event.key === '2') { checkIfDone(); number = '2'; placeNum(number); }
-    if (event.key === '3') { checkIfDone(); number = '3'; placeNum(number); }
-    if (event.key === '4') { checkIfDone(); number = '4'; placeNum(number); }
-    if (event.key === '5') { checkIfDone(); number = '5'; placeNum(number); }
-    if (event.key === '6') { checkIfDone(); number = '6'; placeNum(number); }
-    if (event.key === '7') { checkIfDone(); number = '7'; placeNum(number); }
-    if (event.key === '8') { checkIfDone(); number = '8'; placeNum(number); }
-    if (event.key === '9') { checkIfDone(); number = '9'; placeNum(number); }
+    if (screen.textContent.length < 8) {
+        if (event.key === '0') { checkIfDone(); number = '0'; placeNum(number); }
+        if (event.key === '1') { checkIfDone(); number = '1'; placeNum(number); }
+        if (event.key === '2') { checkIfDone(); number = '2'; placeNum(number); }
+        if (event.key === '3') { checkIfDone(); number = '3'; placeNum(number); }
+        if (event.key === '4') { checkIfDone(); number = '4'; placeNum(number); }
+        if (event.key === '5') { checkIfDone(); number = '5'; placeNum(number); }
+        if (event.key === '6') { checkIfDone(); number = '6'; placeNum(number); }
+        if (event.key === '7') { checkIfDone(); number = '7'; placeNum(number); }
+        if (event.key === '8') { checkIfDone(); number = '8'; placeNum(number); }
+        if (event.key === '9') { checkIfDone(); number = '9'; placeNum(number); }
+        if (event.key === '.') {
+            checkIfDone();
+            if (screen.textContent.includes('.')) {
+                number = '';
+            } else {
+                number = '.';
+            }
+            placeNum(number);
+        }
+    }
     if (event.key === 'Backspace') {
         screen.textContent = screen.textContent.replace(/.$/, '');
     }
@@ -270,15 +281,7 @@ document.addEventListener('keydown', (event) => {
         clearScreen();
         sign = 'positive';
     }
-    if (event.key === '.') {
-        checkIfDone();
-        if (screen.textContent.includes('.')) {
-            number = '';
-        } else {
-            number = '.';
-        }
-        placeNum(number);
-    }
+    
     if (event.key === 'a') {
         clearScreen();
         total = 0;

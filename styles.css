@@ -3,98 +3,103 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 20px;
-}
-
-#border {
-    display: flex;
-    flex-direction: column;
-    border: 10px solid red;
-    padding: 10px;
-    min-height: 500px;
-    min-width: 300px;
+    background-color: rgb(35, 35, 35);
+    color: white;
 }
 
 #header {
     margin-bottom: -20px;
 }
 
+#border {
+    display: flex;
+    flex-direction: column;
+    border: solid white 2px;
+    width: 700px;
+    height: 500 px;
+}
+
 #mainScreen {
     display: flex;
     flex-direction: column;
-    outline: 5px solid black;
-    height: 100px;
-    margin-bottom: 10px;
+    height: 150px;
 }
 
 #equation {
-    height: 25px;
+    height: 50px;
     padding: 5px;
     text-align: end;
+    background-color: rgb(45, 45, 45);
+    color: white;
 }
 
 #screen {
-    height: 75px;
+    height: 100px;
     padding: 10px;
     text-align: end;
     font-size: 50px;
-}
-
-#calculator {
-    display: flex;
-    flex-direction: column;
-    
+    background-color: rgb(45, 45, 45);
+    color: white;
+    font-weight: 700;
 }
 
 #topRow {
     display: flex;
-    justify-content: space-between;
+}
+
+.top, .operator {
+    flex: 1;
+    background-color: #54007C;
+    color: white;
+    border: none;
 }
 
 #container {
     display: flex;
-    
-    justify-content: space-between;
 }
 
 #numbers {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    flex: 3;
 }
 
-#numTop {
+#numTop, #numMid, #numBotm {
     display: flex;
     flex-direction: row-reverse;
 }
 
-#numMid {
-    display: flex;
-    flex-direction: row-reverse;
+#nine, #eight, #seven, #six, #five, #four, #three, #two, #one {
+    flex: 1;
+    height: 60px;
+    background-color: rgb(45, 45, 45);
+    color: white;
+    border: none;
 }
 
-#numBotm {
+#bottom {
     display: flex;
-    flex-direction: row-reverse;
 }
 
 #zero {
+    flex: 2.15;
+}
+
+#dot {
     flex: 1;
+}
+
+#dot, #zero {
+    height: 70px;
+    background-color: rgb(45, 45, 45);
+    color: white;
+    border: none;
 }
 
 #operators {
     display: flex;
     flex-direction: column;
-}
-
-#opTop {
-    display: flex;
-}
-
-#opMid {
-    display: flex;
-}
-
-#equals {
     flex: 1;
 }
 
@@ -119,4 +124,19 @@ li {
     font-size: 20px;
     font-weight: 700;
     color: red;
+}
+
+button {
+    height: 50px;
+}
+
+#equals {
+    height: 70px;
+    background-color: #320049;
+    color: white;
+    border: none;
+}
+
+button:hover {
+    background-image: linear-gradient(rgb(0 0 0/40%) 0 0);
 }
