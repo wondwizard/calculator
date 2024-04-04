@@ -61,42 +61,58 @@ let numObj = {
 
 let operatorObj = {
     plus: function() {
+        if (operator === '-' || operator === '*' || operator === '/') {
+            operate();
+        } else {
+            currentNumber = document.getElementById('screen').textContent;
+            total += +currentNumber;
+        }
         operator = '+';
-        currentNumber = document.getElementById('screen').textContent;
-        total += +currentNumber;
         sign = 'positive';
         clearScreen();
     },
     minus: function() {
-        operator = '-';
-        currentNumber = document.getElementById('screen').textContent;
-        if (total === 0) {
-            total = +currentNumber;
+        if (operator === '+' || operator === '*' || operator === '/') {
+            operate();
         } else {
-            total -= +currentNumber;
+            currentNumber = document.getElementById('screen').textContent;
+            if (total === 0) {
+                total = +currentNumber;
+            } else {
+                total -= +currentNumber;
+            }
         }
+        operator = '-';
         sign = 'positive';
         clearScreen();
     },
     divide: function() {
-        operator = '/';
-        currentNumber = document.getElementById('screen').textContent;
-        if (total === 0) {
-            total = +currentNumber;
+        if (operator === '-' || operator === '*' || operator === '+') {
+            operate();
         } else {
-            total /= +currentNumber;
+            currentNumber = document.getElementById('screen').textContent;
+            if (total === 0) {
+                total = +currentNumber;
+            } else {
+                total /= +currentNumber;
+            }
         }
+        operator = '/';
         sign = 'positive';
         clearScreen();
     },
     multiply: function() {
-        operator = '*';
-        currentNumber = document.getElementById('screen').textContent;
-        if (total === 0) {
-            total = +currentNumber;
+        if (operator === '-' || operator === '+' || operator === '/') {
+            operate();
         } else {
-            total *= +currentNumber;
+            currentNumber = document.getElementById('screen').textContent;
+            if (total === 0) {
+                total = +currentNumber;
+            } else {
+                total *= +currentNumber;
+            }
         }
+        operator = '*';
         sign = 'positive';
         clearScreen();
     },
@@ -105,19 +121,20 @@ let operatorObj = {
 
 //calculations functions
 function add(num1, num2) {
-    return num1 + num2;
+    return (num1 + num2).toFixed(8);
+    
 }
 
 function subtract(num1, num2) {
-    return num1 - num2;
+    return (num1 - num2).toFixed(8);
 }
 
 function multiply(num1, num2) {
-    return num1 * num2;
+    return (num1 * num2).toFixed(8);
 }
 
 function divide(num1, num2) {
-    return num1 / num2;
+    return (num1 / num2).toFixed(8);
 }
 
 //screen functions
@@ -137,12 +154,24 @@ function checkIfDone() {
     }
 }
 
+function operate() {
+    value = document.getElementById('screen').textContent;
+    if (operator === '+') {
+        total += (+value);
+    } else if (operator === '-') {
+        total -= +value;
+    } else if (operator === '*') {
+        total *= +value;
+    } else if (operator === '/') {
+        total /= +value;
+    }
+}
 
 //event listeners
 [...document.getElementsByClassName("num")].forEach(function(item) {
     item.addEventListener('click', function() {
         numObj[this.id]();
-        if (screen.textContent.length < 17) {
+        if (screen.textContent.length < 11) {
             placeNum(number);
         }
         
@@ -152,7 +181,7 @@ function checkIfDone() {
 [...document.getElementsByClassName("operator")].forEach(function(item) {
     item.addEventListener('click', function() {
         operatorObj[this.id]();
-        equation.textContent = '= ' + total + ' ' + operator;    
+        equation.textContent = '= ' + total + ' ' + operator;            
     })
     
 });
