@@ -4,6 +4,7 @@ const equal = document.getElementById('equals');
 const reset = document.getElementById('reset');
 const changeSign = document.getElementById('changeSign');
 const equation = document.getElementById('equation');
+const back = document.getElementById('del');
 
 let number;
 let currentNumber;
@@ -242,4 +243,8 @@ changeSign.addEventListener('click', () => {
         screen.textContent = screen.textContent.replace('-', '');
         sign = 'positive';
     }
+});
+
+back.addEventListener('click', () => {
+    screen.textContent = screen.textContent.replace(/.$/, '');    
 });
