@@ -179,7 +179,7 @@ function operate() {
 [...document.getElementsByClassName("num")].forEach(function(item) {
     item.addEventListener('click', function() {
         numObj[this.id]();
-        if (screen.textContent.length < 8) {
+        if (screen.textContent.length < 20) {
             placeNum(number);
         }
         
@@ -253,7 +253,7 @@ back.addEventListener('click', () => {
 
 
 document.addEventListener('keydown', (event) => {
-    if (screen.textContent.length < 8) {
+    if (screen.textContent.length < 20) {
         if (event.key === '0') { checkIfDone(); number = '0'; placeNum(number); }
         if (event.key === '1') { checkIfDone(); number = '1'; placeNum(number); }
         if (event.key === '2') { checkIfDone(); number = '2'; placeNum(number); }

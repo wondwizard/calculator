@@ -17,6 +17,7 @@ body {
     border: solid white 2px;
     width: 700px;
     height: 500 px;
+    box-shadow: 0 5px 5px 5px rgb(25, 25, 25);
 }
 
 #mainScreen {
